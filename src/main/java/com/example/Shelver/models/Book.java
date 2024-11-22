@@ -1,6 +1,7 @@
 package com.example.Shelver.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -18,7 +19,7 @@ public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer Id;
+    private Integer id;
 
     private String name;
     @Enumerated(value = EnumType.STRING)
@@ -27,10 +28,12 @@ public class Book {
 
     @ManyToOne
     @JoinColumn
+    @JsonIgnoreProperties({"bookList","createdOn"})
     private Author author;
 
     @ManyToOne
     @JoinColumn
+    @JsonIgnoreProperties({"bookList","transactionList","createdOn","updatedOn"})
     private Student student;
 
     @CreationTimestamp
@@ -40,9 +43,8 @@ public class Book {
     private Date updatedOn;
 
     @OneToMany(mappedBy = "book")
+    @JsonIgnoreProperties("book")
     private List<Transaction> transactionList;
-
-
 
 
 }

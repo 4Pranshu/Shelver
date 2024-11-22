@@ -15,5 +15,5 @@ public class GetStudentDetailsResponse {
 
     private Student student;
 
-    private List<Book> bookList;
+//    private List<Book> bookList;
 }

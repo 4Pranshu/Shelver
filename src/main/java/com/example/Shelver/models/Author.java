@@ -1,6 +1,7 @@
 package com.example.Shelver.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -29,6 +30,7 @@ public class Author {
     private Date createdOn;
 
     @OneToMany(mappedBy = "author")
+    @JsonIgnoreProperties("author")
     List<Book> bookList;
 
 }

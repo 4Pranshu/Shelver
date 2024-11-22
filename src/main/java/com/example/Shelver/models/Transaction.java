@@ -1,5 +1,6 @@
 package com.example.Shelver.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -23,11 +24,13 @@ public class Transaction {
 
     @ManyToOne
     @JoinColumn
+    @JsonIgnoreProperties({"transactionList","student","createdOn","updatedOn"})
     private Book book;
 
 
     @ManyToOne
     @JoinColumn
+    @JsonIgnoreProperties({"transactionList","createdOn","updatedOn","bookList"})
     private Student student;
     @CreationTimestamp
     private Date createdOn;
