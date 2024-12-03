@@ -10,7 +10,7 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class InitiateTransactionRequest {
-    private Integer studentId;
+//    private Integer studentId;
 
     private Integer bookId;
 

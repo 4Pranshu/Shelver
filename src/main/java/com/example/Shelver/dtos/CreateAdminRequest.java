@@ -1,20 +1,18 @@
 package com.example.Shelver.dtos;
 
 
+import com.example.Shelver.models.Admin;
 import com.example.Shelver.models.Student;
 import com.example.Shelver.models.User;
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
+@NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CreateStudentRequest {
+public class CreateAdminRequest {
 
     @NotBlank
     private String username;
@@ -29,8 +27,8 @@ public class CreateStudentRequest {
     @NotBlank
     private String mobile;
 
-    public Student to() {
-        return Student.builder()
+    public Admin to() {
+        return Admin.builder()
                 .name(this.name)
                 .email(this.email)
                 .mobile(this.mobile)
@@ -40,5 +38,4 @@ public class CreateStudentRequest {
                         .build())
                 .build();
     }
-
 }

@@ -2,9 +2,7 @@ package com.example.Shelver.services;
 import com.example.Shelver.dtos.CreateStudentRequest;
 import com.example.Shelver.dtos.GetStudentDetailsResponse;
 import com.example.Shelver.dtos.UpdateStudentRequest;
-import com.example.Shelver.models.Book;
-import com.example.Shelver.models.Student;
-import com.example.Shelver.models.StudentStatus;
+import com.example.Shelver.models.*;
 import com.example.Shelver.repositories.StudentRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.JSONObject;
@@ -21,6 +19,9 @@ public class StudentService {
     @Autowired
     private BookService bookService;
 
+    @Autowired
+    private UserService userService;
+
     private ObjectMapper mapper = new ObjectMapper();
     public GetStudentDetailsResponse getStudentDetails(Integer studentId) {
         Student student = studentRepository.findById(studentId).orElse(null);
@@ -33,6 +34,8 @@ public class StudentService {
 
     public Integer createStudent(CreateStudentRequest createStudentRequest) {
         Student student = createStudentRequest.to();
+        User user = userService.create(student.getUser(), Authority.STUDENT);
+        student.setUser(user);
         student= studentRepository.save(student);
         return student.getId();
     }

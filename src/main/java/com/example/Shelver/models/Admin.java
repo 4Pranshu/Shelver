@@ -1,13 +1,11 @@
 package com.example.Shelver.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
-import java.util.*;
+import java.util.Date;
 
 @Entity
 @Getter
@@ -15,7 +13,7 @@ import java.util.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Student {
+public class Admin {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,24 +30,12 @@ public class Student {
     @CreationTimestamp
     private Date createdOn;
 
-    @UpdateTimestamp
-    private Date updatedOn;
 
-    @OneToMany(mappedBy = "student")
-    @JsonIgnoreProperties({"student","transactionList"})
-    private List<Book> bookList;
-
-    @OneToMany(mappedBy = "student")
-    @JsonIgnoreProperties("student")
-    private List<Transaction> transactionList;
-
-    @Enumerated(value = EnumType.STRING)
-    private StudentStatus status;
 
     @JoinColumn
     @OneToOne
-    @JsonIgnore
+    @JsonIgnoreProperties("admin")
     private User user;
-
-
 }
+
+

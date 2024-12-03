@@ -33,12 +33,12 @@ public class TransactionService {
     Integer finePerDay;
 
 
-    public Transaction initiateTransaction(InitiateTransactionRequest transactionReq) throws Exception {
+    public Transaction initiateTransaction(Integer studentId,InitiateTransactionRequest transactionReq) throws Exception {
         switch (transactionReq.getTransactionType()) {
             case RETURN:
-                return initiateReturnTransaction(transactionReq.getStudentId(), transactionReq.getBookId());
+                return initiateReturnTransaction(studentId, transactionReq.getBookId());
             case ISSUE:
-                return initiateIssueTransaction(transactionReq.getStudentId(), transactionReq.getBookId());
+                return initiateIssueTransaction(studentId, transactionReq.getBookId());
             default:
                 throw new Exception("Invalid Transaction Type");
         }
